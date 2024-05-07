@@ -1,11 +1,15 @@
 package stepDefs;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 
+import io.cucumber.java.After;
+import io.cucumber.java.Scenario;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -29,7 +33,7 @@ public class GooglePageStepDef {
 	@Then("Should display Java Tutorial page")
 	public void should_display_java_tutorial_page() {
 	   Assert.assertEquals(driver.getTitle(), "Java Tutorial - Google Search");
-	   driver.close();
+	  // driver.close();
 	}
 	
 	@When("user search Selenium Tutorial")
@@ -40,8 +44,18 @@ public class GooglePageStepDef {
 	}
 	@Then("Should display Selenium Tutorial page")
 	public void should_display_selenium_tutorial_page() {
-		Assert.assertEquals(driver.getTitle(), "Selenium Tutorial - Google Search");
-		 driver.close();
+		Assert.assertEquals(driver.getTitle(), "Selenium1 Tutorial - Google Search");
+		// driver.close();
 	}
+	
+	@After
+	public void attachScreenImg(Scenario scenario) {
+		if(scenario.isFailed()) {
+			TakesScreenshot screen=(TakesScreenshot)driver;
+			byte[] img= screen.getScreenshotAs(OutputType.BYTES);
+			scenario.attach(img, "image/png", "ScreenshotImage");
+		}
+	}
+	
 
 }
