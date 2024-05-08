@@ -17,7 +17,9 @@ import io.cucumber.testng.CucumberOptions;
 		//tags="@PhaseTwo" // to run all scenarios in @PhaseTwo feature only
 		//Feature and Scenario level tags
 		//tags="@PhaseTwo and @SmokeTest" //to run only @SmokeTest Scenarios in @PhaseTwo feature
-		tags="@PhaseTwo and not @SmokeTest" //to run all scenarios other than @SmokeTest scenarios in @PhaseTwo feature
+		//tags="@PhaseTwo and not @SmokeTest" //to run all scenarios other than @SmokeTest scenarios in @PhaseTwo feature
+		//tags="@PhaseTwo and @SmokeTest or @PhaseTwo and @RegressionTest"
+	   tags="@PhaseThree and @SmokeTest or @PhaseThree and @RegressionTest" //Background check in feature file
 		)
 
 public class CRMRunner extends AbstractTestNGCucumberTests {
